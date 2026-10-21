@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y iputils-ping
+# CMD & ENTRYPOINT - AULA 12
+ENTRYPOINT  ["ping", "-c", "3"]
+CMD [ "google.com" ]
+
+EXPOSE 80
+
+
+

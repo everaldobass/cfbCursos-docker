@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+ meusite:
+  image: nginx:latest
+  cntainer_name: site-everaldobass
+  ports:
+  - "8080:80"
+  volumes:
+  - ./website:/usr/share/nginx/html/
+  depends_on:
+  - banco_dados
+
+banco_dados:
+ image: mysql:5.7
+ environment: 
+  MYSQL_ROOT_PASSWORD: 123
+  MYSQL_DATABASE: meubanco
+  volumes: 
+   - dados-mysql:/var/lib/mysql
+
+volumes:
+ dados-mysql:
+  
+
+
+
+

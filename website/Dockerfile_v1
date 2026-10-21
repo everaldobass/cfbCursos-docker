@@ -1,0 +1,11 @@
+FROM ubuntu:24.04
+WORKDIR /workspace
+RUN apt-get update && apt-get install -y curl nano
+
+# Cria o arquivo app.txt diretamente dentro do container durante o build
+RUN echo "Conteudo do meu arquivo de texto criado via Dockerfile" > app.txt
+
+EXPOSE 80
+
+
+
