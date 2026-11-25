@@ -1,5 +1,9 @@
 .git
 .env
+.init
 Dockerfile
 README.md
 arquivos
+node\_modules
+npm-debug.log
+dist

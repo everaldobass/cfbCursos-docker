@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  backend-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=meubanco
+      - DB_USER=root
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+    depends_on:
+      - meubanco
+    restart: always
+
+  meubanco:
+    image: mysql:5.7
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+    volumes:
+      - dados-do-banco:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${DB_PORTA}:3306"
+
+  adminer:
+    image: adminer
+    ports:
+      - "${PORTA_ADMINER}:8080"
+    depends_on:
+      - meubanco
+volumes:
+  dados-do-banco:
+
+
